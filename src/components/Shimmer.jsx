@@ -17,8 +17,8 @@ const Shimmer = ({ flag }) => {
                 <div className="mt-3 ml-1.5 w-[250px] flex justify-between">
                   <div className="w-[40px] h-[40px] rounded-full bg-gray-200"></div>
                   <div className="text-[14px] w-[200px] text-left">
-                    <p className="text-[14px] font-medium w-11/12 bg-gray-200 h-2 mb-1.5"></p>
-                    <p className="font-medium bg-gray-200 h-2 w-[90px] mb-1.5"></p>
+                    <div className="text-[14px] font-medium w-11/12 bg-gray-200 h-2 mb-1.5"></div>
+                    <div className="font-medium bg-gray-200 h-2 w-[90px] mb-1.5"></div>
                     <div className="flex items-center gap-1 mt-1 mb-1.5">
                       <span className="font-medium bg-gray-200 h-2 w-[90px]"></span>
                     </div>
@@ -42,8 +42,8 @@ const Shimmer = ({ flag }) => {
               <div className="mt-3 w-[270px] flex justify-between">
                 <div className="w-[40px] h-[40px] rounded-full bg-gray-200 "></div>
                 <div className="text-[14px] w-[200px] text-left">
-                  <p className="text-[14px] font-medium w-11/12 bg-gray-200 h-2 mb-1.5"></p>
-                  <p className="font-medium bg-gray-200 h-2 w-[90px] mb-1.5"></p>
+                  <div className="text-[14px] font-medium w-11/12 bg-gray-200 h-2 mb-1.5"></div>
+                  <div className="font-medium bg-gray-200 h-2 w-[90px] mb-1.5"></div>
                   <div className="flex items-center gap-1 mt-1 mb-1.5">
                     <span className="font-medium bg-gray-200 h-2 w-[90px]"></span>
                   </div>

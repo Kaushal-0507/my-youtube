@@ -28,9 +28,9 @@ const WatchPage = () => {
   if (!currentVideo) {
     return (
       <div className={`px-3 py-6 ${isMenuOpen ? "ml-[83px]" : ""}`}>
-        <p className="text-xl">
+        <div className="text-xl">
           <Shimmer flag={true} />
-        </p>
+        </div>
       </div>
     );
   }

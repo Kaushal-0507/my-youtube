@@ -84,7 +84,7 @@ export const commentData = [
 
 const CommentList = ({ comments }) => {
   return comments.map((comment, index) => (
-    <div>
+    <div key={index}>
       <Comment key={index} data={comment} />
 
       <div className="pl-2 ml-2 border-l-2 border-gray-300">
