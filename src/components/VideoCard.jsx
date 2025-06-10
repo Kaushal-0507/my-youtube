@@ -78,7 +78,7 @@ const VideoCard = ({ info }) => {
       />
 
       <div className="mt-2 w-[280px] flex justify-between">
-        <div className="w-[40px] h-[40px] rounded-full border-[1px] border-gray-400 mr-2 overflow-hidden">
+        <div className="w-[40px] h-[40px] rounded-full  mr-2 overflow-hidden">
           <img
             className="w-full h-full object-cover"
             src={channelDetails?.snippet?.thumbnails?.default?.url}
@@ -98,7 +98,7 @@ const VideoCard = ({ info }) => {
           >
             {title}
           </p>
-          <p className="text-gray-600 text-sm mt-1">{channelTitle}</p>
+          <p className="text-gray-500 text-sm mt-1">{channelTitle}</p>
           <div className="flex items-center gap-1 text-gray-500 text-xs mt-1">
             {statistics?.viewCount && (
               <span>{formatViewCount(statistics.viewCount)} views</span>
@@ -110,7 +110,7 @@ const VideoCard = ({ info }) => {
         <BsThreeDotsVertical
           size={35}
           color="gray"
-          className="p-2 ml-1 bg-gray-100 rounded-full"
+          className="p-2 ml-1 rounded-full"
         />
       </div>
     </div>

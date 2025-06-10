@@ -9,6 +9,7 @@ import CommentList, { commentData } from "../utils/CommentData";
 import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import Shimmer from "./Shimmer";
+import LiveChat from "./LiveChat";
 
 const WatchPage = () => {
   const [searchParams] = useSearchParams();
@@ -67,9 +68,9 @@ const WatchPage = () => {
                 }}
               >
                 {showComment ? (
-                  <MdOutlineKeyboardArrowDown />
-                ) : (
                   <MdOutlineKeyboardArrowUp />
+                ) : (
+                  <MdOutlineKeyboardArrowDown />
                 )}
               </span>
             </div>
@@ -78,12 +79,16 @@ const WatchPage = () => {
           </div>
         </div>
       </div>
-      <div className="max-w-[380px] mx-5 overflow-hidden flex flex-col gap-4">
-        {videos.map((video) => (
-          <Link key={video?.id} to={"/watch?v=" + video.id}>
-            <SidebarVideos info={video} />
-          </Link>
-        ))}
+      <div className="mx-5 max-w-[380px] ">
+        <LiveChat />
+
+        <div className="w-full overflow-hidden flex flex-col gap-4">
+          {videos.map((video) => (
+            <Link key={video?.id} to={"/watch?v=" + video.id}>
+              <SidebarVideos info={video} />
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );

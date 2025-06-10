@@ -12,7 +12,6 @@ const Shimmer = ({ flag }) => {
           <div className="ml-6 flex-grow overflow-y-auto">
             {[...Array(16)].map((_, i) => (
               <div key={i} className="flex mb-3">
-                {" "}
                 <div className="p-2 w-[180px] flex flex-col h-[100px] rounded-xl relative overflow-hidden bg-gray-200"></div>
                 <div className="mt-3 ml-1.5 w-[250px] flex justify-between">
                   <div className="w-[40px] h-[40px] rounded-full bg-gray-200"></div>
@@ -33,9 +32,8 @@ const Shimmer = ({ flag }) => {
       {!flag && (
         <div className=" p-1 flex  flex-wrap gap-6">
           {[...Array(16)].map((_, i) => (
-            <div>
+            <div key={i}>
               <div
-                key={i}
                 className="shimmer-card p-2 w-[270px] flex flex-col h-[155px] rounded-xl 
                       relative overflow-hidden bg-gray-200"
               ></div>

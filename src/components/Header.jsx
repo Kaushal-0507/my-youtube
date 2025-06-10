@@ -31,10 +31,10 @@ const Header = () => {
     };
   }, [searchText]);
   const getSearchSuggestion = async () => {
-    console.log(searchText);
+    // console.log(searchText);
     const data = await fetch(YOUTUBE_SEARCH_API + searchText);
     const json = await data.json();
-    console.log(json[1]);
+    // console.log(json[1]);
     setSuggestions(json[1]);
 
     dispatch(
