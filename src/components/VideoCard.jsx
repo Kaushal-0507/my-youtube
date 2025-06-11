@@ -45,7 +45,7 @@ export const formatTimeAgo = (publishedAt) => {
 };
 
 export const formatViewCount = (count) => {
-  if (!count) return "0";
+  if (!count) return "";
 
   const num = parseInt(count);
   if (num >= 1000000) {
@@ -57,16 +57,17 @@ export const formatViewCount = (count) => {
   return num.toString();
 };
 
-const VideoCard = ({ info }) => {
+const VideoCard = ({ info, flag }) => {
   if (!info) return null;
 
   const { snippet, statistics, contentDetails } = info;
   const { channelTitle, channelId, thumbnails, title, publishedAt } = snippet;
   const channelDetails = useChannelDetails(channelId);
+
   const duration = contentDetails?.duration;
 
   return (
-    <div className="cursor-pointer relative h-[240px] ">
+    <div className="cursor-pointer relative h-[240px]">
       <div className="absolute bottom-[94px]  right-4 text-[14px] bg-black/80 text-white font-semibold px-2 py-1 rounded-md">
         {formatDuration(duration)}
       </div>
@@ -78,13 +79,15 @@ const VideoCard = ({ info }) => {
       />
 
       <div className="mt-2 w-[280px] flex justify-between">
-        <div className="w-[40px] h-[40px] rounded-full  mr-2 overflow-hidden">
-          <img
-            className="w-full h-full object-cover"
-            src={channelDetails?.snippet?.thumbnails?.default?.url}
-            alt="channel"
-          />
-        </div>
+        {!flag && (
+          <div className="w-[40px] h-[40px] rounded-full  mr-2 overflow-hidden">
+            <img
+              className="w-full h-full object-cover"
+              src={channelDetails?.snippet?.thumbnails?.default?.url}
+              alt="channel"
+            />
+          </div>
+        )}
         <div className="text-[14px] w-[200px] text-left">
           <p
             className="text-[14px] font-medium line-clamp-2"
@@ -100,9 +103,8 @@ const VideoCard = ({ info }) => {
           </p>
           <p className="text-gray-500 text-sm mt-1">{channelTitle}</p>
           <div className="flex items-center gap-1 text-gray-500 text-xs mt-1">
-            {statistics?.viewCount && (
-              <span>{formatViewCount(statistics.viewCount)} views</span>
-            )}
+            <span>{formatViewCount(statistics?.viewCount) || ""} views</span>
+
             <span>•</span>
             <span>{formatTimeAgo(publishedAt)}</span>
           </div>

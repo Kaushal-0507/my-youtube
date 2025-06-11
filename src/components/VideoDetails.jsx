@@ -6,10 +6,12 @@ import { RiShareForwardLine } from "react-icons/ri";
 import { BiLike } from "react-icons/bi";
 import { BiDislike } from "react-icons/bi";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const VideoDetails = ({ video }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const channelDetails = useChannelDetails(video?.snippet?.channelId);
+
   const [subscribe, setSubscribe] = useState(false);
 
   const handleSubscribe = () => {
@@ -24,6 +26,7 @@ const VideoDetails = ({ video }) => {
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };
+
   const renderDescription = () => {
     if (!description) return null;
 
@@ -52,63 +55,141 @@ const VideoDetails = ({ video }) => {
     <div>
       <div className="mt-3 max-w-[680px]">
         <h1 className="text-xl font-bold">{title}</h1>
-        <div className="flex items-center justify-between mt-2">
-          <div className="flex items-center mt-3">
-            <div className="w-[50px] h-[50px] rounded-full border-[1px] border-gray-400 mr-3 overflow-hidden">
+
+        {/* Desktop Layout */}
+        <div className="hidden md:block">
+          <div className="flex items-center justify-between mt-2">
+            <div className="flex items-center mt-3">
+              <div className="w-[50px] h-[50px] rounded-full border-[1px] border-gray-400 mr-3 overflow-hidden">
+                <Link
+                  key={video?.snippet?.channelId}
+                  to={"/channel?c=" + video?.snippet?.channelId}
+                >
+                  <img
+                    className="w-full h-full object-cover"
+                    src={channelDetails?.snippet?.thumbnails?.default?.url}
+                    alt="channel"
+                  />
+                </Link>
+              </div>
+              <div>
+                <Link
+                  key={video?.snippet?.channelId}
+                  to={"/channel?c=" + video?.snippet?.channelId}
+                >
+                  <p className="text-black font-bold text-[18px]">
+                    {channelTitle}
+                  </p>
+                </Link>
+                {channelDetails?.statistics?.subscriberCount && (
+                  <p className="text-gray-500 text-sm">
+                    {formatViewCount(channelDetails.statistics.subscriberCount)}{" "}
+                    subscribers
+                  </p>
+                )}
+              </div>
+              <button
+                onClick={handleSubscribe}
+                className={`ml-5 cursor-pointer px-3.5 py-2 text-center font-semibold text-[16px] text-white bg-black rounded-[40px] ${
+                  subscribe ? "bg-black text-white" : "bg-red-600 text-white"
+                }`}
+              >
+                {subscribe ? "Subscribed" : "Subscribe"}
+              </button>
+            </div>
+            <div className="flex gap-2 text-sm text-gray-500 items-center mt-3">
+              {statistics?.likeCount && (
+                <span className="flex py-2 px-4 cursor-pointer bg-gray-200 rounded-full">
+                  <BiLike size={20} color="black" className="mr-1.5" />
+                  {formatViewCount(statistics.likeCount)} |{" "}
+                  <BiDislike size={20} color="black" className="ml-2" />
+                </span>
+              )}
+              <div className="py-2 px-4 flex cursor-pointer bg-gray-200 text-black rounded-full">
+                <RiShareForwardLine
+                  size={20}
+                  color="black"
+                  className="mr-1.5"
+                />
+                <p className="font-semibold">Share</p>
+              </div>
+              <p className="p-2 cursor-pointer bg-gray-200 rounded-full">
+                <BsThreeDots size={20} />
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Layout */}
+        <div className="md:hidden">
+          <div className="flex items-center  gap-2 text-xs text-gray-500">
+            {statistics?.viewCount && (
+              <span>{formatViewCount(statistics.viewCount)} views</span>
+            )}
+            <span>•</span>
+            <span>{formatTimeAgo(publishedAt)}</span>
+          </div>
+          <div className="flex items-center mt-3 gap-2">
+            <div className="w-[40px] h-[40px] rounded-full border-[1px] border-gray-300 overflow-hidden">
               <img
                 className="w-full h-full object-cover"
                 src={channelDetails?.snippet?.thumbnails?.default?.url}
                 alt="channel"
               />
             </div>
-            <div>
-              <p className="text-black font-bold text-[18px]">{channelTitle}</p>
-              {channelDetails?.statistics?.subscriberCount && (
-                <p className="text-gray-500 text-sm">
-                  {formatViewCount(channelDetails.statistics.subscriberCount)}{" "}
-                  subscribers
-                </p>
-              )}
+
+            <div className="flex-1">
+              <div className="flex flex-col">
+                <p className="text-black font-bold text-base">{channelTitle}</p>
+                {channelDetails?.statistics?.subscriberCount && (
+                  <p className="text-gray-500 text-xs">
+                    {formatViewCount(channelDetails.statistics.subscriberCount)}{" "}
+                    subs
+                  </p>
+                )}
+              </div>
             </div>
             <button
-              onClick={() => {
-                handleSubscribe();
-              }}
-              className={`ml-5 cursor-pointer px-3.5 py-2 text-center font-semibold text-[16px] text-white bg-black rounded-[40px] ${
-                subscribe ? "bg-black text-white" : "bg-red-600 text-white"
+              onClick={handleSubscribe}
+              className={`px-3 py-1 text-sm font-semibold text-white rounded-full ${
+                subscribe ? "bg-gray-600" : "bg-red-600"
               }`}
             >
               {subscribe ? "Subscribed" : "Subscribe"}
             </button>
           </div>
-          <div className="flex gap-2 text-sm text-gray-500 items-center mt-3">
+
+          <div className="flex gap-2 mt-3">
             {statistics?.likeCount && (
-              <span className="flex py-2 px-4 cursor-pointer bg-gray-200 rounded-full">
-                {" "}
-                <BiLike size={20} color="black" className="mr-1.5" />
+              <span className="flex py-2 px-3 items-center text-[12px] cursor-pointer bg-gray-200 rounded-full">
+                <BiLike size={16} color="black" className="mr-1.5" />
                 {formatViewCount(statistics.likeCount)} |{" "}
-                <BiDislike size={20} color="black" className="ml-2" />
+                <BiDislike size={16} color="black" className="ml-2" />
               </span>
             )}
-            <div className="py-2 px-4 flex cursor-pointer bg-gray-200 text-black rounded-full">
-              <RiShareForwardLine size={20} color="black" className="mr-1.5" />
+            <div className="py-2 px-3 text-[12px] items-center flex cursor-pointer bg-gray-200 text-black rounded-full">
+              <RiShareForwardLine size={16} color="black" className="mr-1.5" />
               <p className="font-semibold">Share</p>
             </div>
-            <p className="p-2 cursor-pointer bg-gray-200 rounded-full">
-              <BsThreeDots size={20} />
+            <p className="py-2 px-2.5 ml-[55px] cursor-pointer bg-gray-200 rounded-full">
+              <BsThreeDots size={16} />
             </p>
           </div>
         </div>
-        <div className="mt-4 p-3 text-[16px] bg-gray-100 rounded-lg">
-          <div className="flex gap-2 text-sm mb-2">
+
+        {/* Description (same for both) */}
+
+        <div className="mt-3 md:mt-4 p-3 text-sm md:text-[16px] bg-gray-100 rounded-lg">
+          <div className="hidden md:flex md:items-center  md:gap-2 md:font-semibold md:text-[14px] md:text-gray-500">
             {statistics?.viewCount && (
-              <span className="font-bold">
-                {formatViewCount(statistics.viewCount)} views
-              </span>
+              <span>{formatViewCount(statistics.viewCount)} views</span>
             )}
-            <span className="font-bold">{formatTimeAgo(publishedAt)}</span>
+            <span>•</span>
+            <span>{formatTimeAgo(publishedAt)}</span>
           </div>
-          {renderDescription()}
+          <div className="flex gap-2 text-sm mb-2 md:block">
+            {renderDescription()}
+          </div>
         </div>
       </div>
     </div>

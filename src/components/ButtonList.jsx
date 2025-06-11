@@ -5,10 +5,10 @@ const ButtonList = () => {
     "All",
     "Live",
     "Music",
-    "Sitcoms",
-    "B99",
-    "Modern Family",
     "Anime",
+    "Sitcoms",
+    "Modern Family",
+    "B99",
     "One Piece",
     "Movies",
     "James Bond",
@@ -19,7 +19,7 @@ const ButtonList = () => {
     "Better Call Saul",
   ];
   return (
-    <div className="flex max-w-[93%] overflow-x-scroll [&::-webkit-scrollbar]:hidden py-2  space-x-2">
+    <div className="flex max-w-[93%] ml-2 md:ml-0 overflow-x-scroll [&::-webkit-scrollbar]:hidden py-2 space-x-2 align-middle">
       {lists.map((list, index) => (
         <button
           key={index}
