@@ -68,9 +68,11 @@ const VideoCard = ({ info, flag }) => {
 
   return (
     <div className="cursor-pointer relative h-[240px]">
-      <div className="absolute bottom-[94px]  right-4 text-[14px] bg-black/80 text-white font-semibold px-2 py-1 rounded-md">
-        {formatDuration(duration)}
-      </div>
+      {duration && (
+        <div className="absolute bottom-[94px]  right-4 text-[14px] bg-black/80 text-white font-semibold px-2 py-1 rounded-md">
+          {formatDuration(duration)}
+        </div>
+      )}
 
       <img
         src={thumbnails?.medium?.url}

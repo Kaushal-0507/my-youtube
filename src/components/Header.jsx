@@ -70,13 +70,13 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="w-full md:w-auto  md:mt-3 md:col-span-9 md:text-center ">
+      <div className="w-full md:w-auto md:ml-42  md:mt-3 md:col-span-9 md:text-center ">
         <div className="relative flex">
           <input
             id="mobile-search"
             type="text"
             placeholder="Search"
-            className="border-[1px] w-full md:w-[60%] text-[16px] md:text-[18px] p-2 px-5 rounded-l-full border-gray-400 outline-none"
+            className="border-[1px] w-full md:w-[83%] text-[16px] md:text-[18px] p-2 px-5 rounded-l-full border-gray-400 outline-none"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
             onFocus={() => setSuggestionFocus(true)}
@@ -90,13 +90,17 @@ const Header = () => {
         {suggestionFocus && suggestions.length > 0 && (
           <div className="absolute md:fixed bg-white rounded-[10px] shadow-2xl w-[90%] md:w-[480px] md:left-[50%] md:translate-x-[-50%] px-2 py-2 mt-1 text-left border-gray-300 z-50">
             {suggestions.map((s) => (
-              <p
+              <Link
                 key={s}
-                className="flex items-center gap-3 text-[16px] md:text-[18px] mb-1.5 hover:bg-gray-200 py-1.5 px-1.5 rounded-[5px]"
+                to={`/search?s=${encodeURIComponent(s)}`}
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => setSearchText(s)}
               >
-                <HiMagnifyingGlass size={22} color="gray" />
-                {s}
-              </p>
+                <p className="flex items-center gap-3 text-[16px] md:text-[18px] mb-1.5 hover:bg-gray-200 py-1.5 px-1.5 rounded-[5px]">
+                  <HiMagnifyingGlass size={22} color="gray" />
+                  {s}
+                </p>
+              </Link>
             ))}
           </div>
         )}

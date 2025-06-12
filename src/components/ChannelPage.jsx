@@ -11,11 +11,10 @@ import VideoCard from "./VideoCard";
 const ChannelPage = () => {
   const [searchParams] = useSearchParams();
   const channelUrl = searchParams.get("c");
-  console.log(channelUrl);
+
   const [subscribe, setSubscribe] = useState(false);
   const [showDescriptionModal, setShowDescriptionModal] = useState(false);
   const channelVideos = useChannelVideos(channelUrl);
-  console.log(channelVideos);
 
   const channelDetails = useChannelDetails(channelUrl);
 
@@ -79,7 +78,7 @@ const ChannelPage = () => {
 
       {/* Description Modal Popup */}
       {showDescriptionModal && (
-        <div className="fixed md:top-24 w-[280px] md:w-0 top-32 left-[20px] md:h-[450px] h-[300px] md:left-[35%] bg-white border-[2px] rounded-[10px] flex items-center overflow-y-scroll [&::-webkit-scrollbar]:hidden  justify-center z-50 p-4">
+        <div className="fixed md:top-24 w-[280px] md:w-[400px] top-32 left-[20px] md:h-[400px] h-[300px] md:left-[35%] bg-white border-[2px] rounded-[10px] flex items-center overflow-y-scroll [&::-webkit-scrollbar]:hidden  justify-center z-50 p-4">
           <div className="bg-white h-full rounded-lg max-w-md w-full md:px-6 px-2 py-1">
             <div className="flex justify-between items-center">
               <h2 className="text-xl font-bold mb-2">About {title}</h2>

@@ -9,6 +9,7 @@ import MainContainer from "./components/MainContainer";
 import WatchPage from "./components/WatchPage";
 import Sidebar from "./components/Sidebar";
 import ChannelPage from "./components/ChannelPage";
+import SearchVidResult from "./components/SearchVidResult";
 
 function App() {
   const appRouter = createBrowserRouter([
@@ -32,6 +33,10 @@ function App() {
         {
           path: "channel",
           element: <ChannelPage />,
+        },
+        {
+          path: "search",
+          element: <SearchVidResult />,
         },
       ],
     },
