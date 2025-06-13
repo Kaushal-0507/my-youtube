@@ -2,11 +2,17 @@ import React from "react";
 import { MdAccountCircle } from "react-icons/md";
 import { BiLike } from "react-icons/bi";
 import { BiDislike } from "react-icons/bi";
+import { useSelector } from "react-redux";
 
 const Comment = ({ data }) => {
+  const isDarkTheme = useSelector((store) => store.app.isDarkTheme);
   const { name, text } = data;
   return (
-    <div className="flex flex-col px-1.5 pt-1.5 mb-1.5 bg-gray-100 rounded-lg">
+    <div
+      className={`flex flex-col px-1.5 pt-1.5 mb-1.5 rounded-[10px] ${
+        isDarkTheme ? "bg-white/10 text-white" : "bg-gray-100 text-black"
+      }`}
+    >
       <div className="flex">
         <MdAccountCircle
           size={30}

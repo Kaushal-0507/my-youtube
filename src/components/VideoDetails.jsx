@@ -7,12 +7,14 @@ import { BiLike } from "react-icons/bi";
 import { BiDislike } from "react-icons/bi";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const VideoDetails = ({ video }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const channelDetails = useChannelDetails(video?.snippet?.channelId);
 
   const [subscribe, setSubscribe] = useState(false);
+  const isDarkTheme = useSelector((store) => store.app.isDarkTheme);
 
   const handleSubscribe = () => {
     setSubscribe(!subscribe);
@@ -54,7 +56,13 @@ const VideoDetails = ({ video }) => {
   return (
     <div>
       <div className="mt-3 max-w-[680px]">
-        <h1 className="text-xl font-bold">{title}</h1>
+        <h1
+          className={`text-xl font-bold ${
+            isDarkTheme ? "text-white" : "text-black"
+          }`}
+        >
+          {title}
+        </h1>
 
         {/* Desktop Layout */}
         <div className="hidden md:block">
@@ -77,7 +85,11 @@ const VideoDetails = ({ video }) => {
                   key={video?.snippet?.channelId}
                   to={"/channel?c=" + video?.snippet?.channelId}
                 >
-                  <p className="text-black font-bold text-[18px]">
+                  <p
+                    className={`font-bold text-[18px] ${
+                      isDarkTheme ? "text-white" : "text-black"
+                    }`}
+                  >
                     {channelTitle}
                   </p>
                 </Link>
@@ -91,7 +103,9 @@ const VideoDetails = ({ video }) => {
               <button
                 onClick={handleSubscribe}
                 className={`ml-5 cursor-pointer px-3.5 py-2 text-center font-semibold text-[16px] text-white bg-black rounded-[40px] ${
-                  subscribe ? "bg-black text-white" : "bg-red-600 text-white"
+                  subscribe
+                    ? "bg-black text-white border-[1px] border-gray-400"
+                    : "bg-red-600 text-white"
                 }`}
               >
                 {subscribe ? "Subscribed" : "Subscribe"}
@@ -99,21 +113,35 @@ const VideoDetails = ({ video }) => {
             </div>
             <div className="flex gap-2 text-sm text-gray-500 items-center mt-3">
               {statistics?.likeCount && (
-                <span className="flex py-2 px-4 cursor-pointer bg-gray-200 rounded-full">
-                  <BiLike size={20} color="black" className="mr-1.5" />
+                <span
+                  className={`flex py-2 px-4 cursor-pointer bg-gray-200 rounded-full ${
+                    isDarkTheme
+                      ? "text-white bg-white/10"
+                      : "bg-gray-200 text-black"
+                  }`}
+                >
+                  <BiLike size={20} className="mr-1.5" />
                   {formatViewCount(statistics.likeCount)} |{" "}
-                  <BiDislike size={20} color="black" className="ml-2" />
+                  <BiDislike size={20} className="ml-2" />
                 </span>
               )}
-              <div className="py-2 px-4 flex cursor-pointer bg-gray-200 text-black rounded-full">
-                <RiShareForwardLine
-                  size={20}
-                  color="black"
-                  className="mr-1.5"
-                />
+              <div
+                className={`flex py-2 px-4 cursor-pointer bg-gray-200 rounded-full ${
+                  isDarkTheme
+                    ? "text-white bg-white/10"
+                    : "bg-gray-200 text-black"
+                }`}
+              >
+                <RiShareForwardLine size={20} className="mr-1.5" />
                 <p className="font-semibold">Share</p>
               </div>
-              <p className="p-2 cursor-pointer bg-gray-200 rounded-full">
+              <p
+                className={`p-2  cursor-pointer bg-gray-200 rounded-full ${
+                  isDarkTheme
+                    ? "text-white bg-white/10"
+                    : "bg-gray-200 text-black"
+                }`}
+              >
                 <BsThreeDots size={20} />
               </p>
             </div>
@@ -179,7 +207,11 @@ const VideoDetails = ({ video }) => {
 
         {/* Description (same for both) */}
 
-        <div className="mt-3 md:mt-4 p-3 text-sm md:text-[16px] bg-gray-100 rounded-lg">
+        <div
+          className={`mt-3 md:mt-4 p-3 text-sm md:text-[16px] bg-gray-100 rounded-lg ${
+            isDarkTheme ? "text-white bg-white/10 " : "bg-gray-100"
+          }`}
+        >
           <div className="hidden md:flex md:items-center  md:gap-2 md:font-semibold md:text-[14px] md:text-gray-500">
             {statistics?.viewCount && (
               <span>{formatViewCount(statistics.viewCount)} views</span>

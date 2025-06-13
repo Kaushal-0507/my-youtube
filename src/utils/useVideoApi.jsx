@@ -12,7 +12,6 @@ const useVideoApi = () => {
     const data = await fetch(YOUTUBE_VIDEOS_API);
     const json = await data.json();
     setVideoLists(json?.items);
-    console.log(json?.items);
   };
 
   return videoLists;

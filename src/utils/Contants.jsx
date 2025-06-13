@@ -5,6 +5,9 @@ export const YOUTUBE_VIDEOS_API =
   GOOGLE_API_KEY;
 
 export const YOUTUBE_SEARCH_API =
-  "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+  "https://thingproxy.freeboard.io/fetch/http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
 export const LIVE_CHAT_COUNT = 30;
+
+// AIzaSyDH4b9XvWl7CUnDrWJgOqHYNf1Ebd6S2Hw
+// AIzaSyCgQf6EQo7gHH3qcTOK5I7iEGUX_zznSZk

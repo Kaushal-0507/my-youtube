@@ -1,9 +1,15 @@
 import React from "react";
 import { MdAccountCircle } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 const Chats = ({ name, message }) => {
+  const isDarkTheme = useSelector((store) => store.app.isDarkTheme);
   return (
-    <div className="flex mb-2 rounded-[5px] bg-gray-200 py-2 px-1">
+    <div
+      className={`flex mb-2 rounded-[5px] py-2 px-1 ${
+        isDarkTheme ? "bg-black text-white" : "bg-gray-200 text-black"
+      }`}
+    >
       <div className="flex items-center">
         {" "}
         <p>

@@ -1,54 +1,60 @@
+import { useSelector } from "react-redux";
+
 const Shimmer = ({ flag }) => {
+  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+
   return (
-    <div className="w-full">
-      {flag && (
-        <div className="flex flex-row justify-between w-full">
-          <div className="w-[680px] flex-shrink-0">
-            {" "}
-            <div className="mt-2 w-full h-[380px] rounded-[10px] bg-gray-200"></div>
-            <div className="mt-2 w-full h-[180px] rounded-[10px] bg-gray-200"></div>
+    <div className={`w-full ${isMenuOpen ? "md:ml-[83px]" : ""}`}>
+      {flag ? (
+        <div className="flex flex-col lg:flex-row w-full px-2 md:px-4">
+          <div className="w-full lg:w-[68%] lg:pr-4">
+            <div className="aspect-video w-full rounded-xl bg-gray-200 animate-pulse"></div>
+            <div className="mt-4 w-full h-32 rounded-xl bg-gray-200 animate-pulse"></div>
           </div>
 
-          <div className="ml-6 flex-grow overflow-y-auto">
-            {[...Array(16)].map((_, i) => (
-              <div key={i} className="flex mb-3">
-                <div className="p-2 w-[180px] flex flex-col h-[100px] rounded-xl relative overflow-hidden bg-gray-200"></div>
-                <div className="mt-3 ml-1.5 w-[250px] flex justify-between">
-                  <div className="w-[40px] h-[40px] rounded-full bg-gray-200"></div>
-                  <div className="text-[14px] w-[200px] text-left">
-                    <div className="text-[14px] font-medium w-11/12 bg-gray-200 h-2 mb-1.5"></div>
-                    <div className="font-medium bg-gray-200 h-2 w-[90px] mb-1.5"></div>
-                    <div className="flex items-center gap-1 mt-1 mb-1.5">
-                      <span className="font-medium bg-gray-200 h-2 w-[90px]"></span>
-                    </div>
-                  </div>
+          <div className="hidden lg:flex lg:flex-col lg:w-[32%] gap-4 mt-0">
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="flex gap-3">
+                <div className="w-[168px] h-[94px] rounded-xl bg-gray-200 animate-pulse flex-shrink-0"></div>
+                <div className="flex-1">
+                  <div className="h-4 w-full rounded bg-gray-200 animate-pulse mb-2"></div>
+                  <div className="h-3 w-3/4 rounded bg-gray-200 animate-pulse mb-1"></div>
+                  <div className="h-3 w-1/2 rounded bg-gray-200 animate-pulse"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="lg:hidden mt-4 grid grid-cols-1 gap-4">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="flex gap-3">
+                <div className="w-[45%] aspect-video rounded-xl bg-gray-200 animate-pulse"></div>
+                <div className="flex-1">
+                  <div className="h-4 w-full rounded bg-gray-200 animate-pulse mb-2"></div>
+                  <div className="h-3 w-3/4 rounded bg-gray-200 animate-pulse mb-1"></div>
+                  <div className="h-3 w-1/2 rounded bg-gray-200 animate-pulse"></div>
                 </div>
               </div>
             ))}
           </div>
         </div>
-      )}
-
-      {!flag && (
-        <div className=" p-1 flex  flex-wrap gap-6">
-          {[...Array(16)].map((_, i) => (
-            <div key={i}>
-              <div
-                className="shimmer-card p-2 w-[270px] flex flex-col h-[155px] rounded-xl 
-                      relative overflow-hidden bg-gray-200"
-              ></div>
-              <div className="mt-3 w-[270px] flex justify-between">
-                <div className="w-[40px] h-[40px] rounded-full bg-gray-200 "></div>
-                <div className="text-[14px] w-[200px] text-left">
-                  <div className="text-[14px] font-medium w-11/12 bg-gray-200 h-2 mb-1.5"></div>
-                  <div className="font-medium bg-gray-200 h-2 w-[90px] mb-1.5"></div>
-                  <div className="flex items-center gap-1 mt-1 mb-1.5">
-                    <span className="font-medium bg-gray-200 h-2 w-[90px]"></span>
+      ) : (
+        <div className="px-2 md:px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {[...Array(16)].map((_, i) => (
+              <div key={i} className="w-full">
+                <div className="aspect-video w-full rounded-xl bg-gray-200 animate-pulse"></div>
+                <div className="mt-3 flex gap-2">
+                  <div className="w-9 h-9 rounded-full bg-gray-200 animate-pulse"></div>
+                  <div className="flex-1">
+                    <div className="h-4 w-full rounded bg-gray-200 animate-pulse mb-2"></div>
+                    <div className="h-3 w-3/4 rounded bg-gray-200 animate-pulse mb-1"></div>
+                    <div className="h-3 w-1/2 rounded bg-gray-200 animate-pulse"></div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       )}
     </div>

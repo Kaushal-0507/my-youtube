@@ -10,6 +10,7 @@ import WatchPage from "./components/WatchPage";
 import Sidebar from "./components/Sidebar";
 import ChannelPage from "./components/ChannelPage";
 import SearchVidResult from "./components/SearchVidResult";
+import SignInRequired from "./components/SignInRequired";
 
 function App() {
   const appRouter = createBrowserRouter([
@@ -37,6 +38,10 @@ function App() {
         {
           path: "search",
           element: <SearchVidResult />,
+        },
+        {
+          path: "/signin",
+          element: <SignInRequired />,
         },
       ],
     },

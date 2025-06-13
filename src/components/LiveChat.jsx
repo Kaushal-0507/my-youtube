@@ -13,6 +13,7 @@ const LiveChat = () => {
   const [liveMessages, setLiveMessages] = useState("");
   const chatMessages = useSelector((store) => store.chat.messages);
   const dispatch = useDispatch();
+  const isDarkTheme = useSelector((store) => store.app.isDarkTheme);
 
   useEffect(() => {
     if (showChats) {
@@ -30,7 +31,11 @@ const LiveChat = () => {
 
   return (
     <div className="w-full mb-1 md:mb-3">
-      <div className="flex justify-between items-center text-base md:text-[18px] font-semibold bg-gray-200 py-2 px-2.5 rounded-[5px] mb-1.5">
+      <div
+        className={`flex justify-between items-center text-base md:text-[18px] font-semibold py-2 px-2.5 rounded-[5px] mb-1.5 ${
+          isDarkTheme ? "bg-white/10 text-white" : "bg-gray-200 text-black"
+        }`}
+      >
         <span className="cursor-pointer" onClick={toggleChat}>
           Live Chats
         </span>
@@ -50,13 +55,19 @@ const LiveChat = () => {
       </div>
       {showChats && (
         <div>
-          <div className="bg-gray-100 h-[200px] md:h-[290px] pt-2 pb-1 px-2.5 rounded-t-[5px] overflow-y-scroll [&::-webkit-scrollbar]:hidden flex flex-col-reverse">
+          <div
+            className={` h-[200px] md:h-[290px] pt-2 pb-1 px-2.5 rounded-t-[5px] overflow-y-scroll [&::-webkit-scrollbar]:hidden flex flex-col-reverse ${
+              isDarkTheme ? "bg-white/10 text-white" : "bg-gray-100 text-black"
+            }`}
+          >
             {chatMessages.map((c, index) => (
               <Chats key={index} name={c.name} message={c.message} />
             ))}
           </div>
           <form
-            className="flex bg-gray-100 pb-3 px-3 rounded-b-[5px]"
+            className={`flex pb-3 px-3 rounded-b-[5px] ${
+              isDarkTheme ? "bg-white/10 text-white" : "bg-gray-100 text-black"
+            }`}
             onSubmit={(e) => {
               e.preventDefault();
               dispatch(

@@ -2,6 +2,7 @@ import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import useChannelDetails from "../utils/useChannelDetails";
 import { formatTimeAgo, formatDuration, formatViewCount } from "./VideoCard";
+import { useSelector } from "react-redux";
 
 const SidebarVideos = ({ info }) => {
   if (!info) return null;
@@ -10,6 +11,7 @@ const SidebarVideos = ({ info }) => {
   const { channelTitle, channelId, thumbnails, title, publishedAt } = snippet;
   const channelDetails = useChannelDetails(channelId);
   const duration = contentDetails?.duration;
+  const isDarkTheme = useSelector((store) => store.app.isDarkTheme);
 
   return (
     <div className="cursor-pointer relative items-center flex">
@@ -28,7 +30,9 @@ const SidebarVideos = ({ info }) => {
       <div className="ml-1.5 w-[280px] flex justify-between">
         <div className="text-[14px] w-[200px] text-left">
           <p
-            className="text-[14px] font-medium line-clamp-2"
+            className={`text-[14px] font-medium line-clamp-2 ${
+              isDarkTheme ? "text-white" : "text-black"
+            }`}
             style={{
               display: "-webkit-box",
               WebkitLineClamp: 2,
@@ -51,7 +55,9 @@ const SidebarVideos = ({ info }) => {
         <BsThreeDotsVertical
           size={25}
           color="gray"
-          className="p-1.5 ml-1 bg-gray-100 rounded-full"
+          className={`p-1.5 ml-1 bg-gray-100 rounded-full ${
+            isDarkTheme ? "bg-white/10" : ""
+          }`}
         />
       </div>
     </div>
