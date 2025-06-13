@@ -11,7 +11,7 @@ const useSearchVideos = (keyword) => {
 
       try {
         const response = await fetch(`
-  https://thingproxy.freeboard.io/fetch/https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${keyword}&type=video&key=${GOOGLE_API_KEY}`);
+  https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${keyword}&type=video&key=${GOOGLE_API_KEY}`);
         const json = await response.json();
         setSearchVideos(json.items || null);
       } catch (error) {

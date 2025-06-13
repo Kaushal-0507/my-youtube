@@ -67,55 +67,60 @@ const VideoCard = ({ info, flag }) => {
   const duration = contentDetails?.duration;
 
   return (
-    <div className="cursor-pointer relative h-[240px]">
-      {duration && (
-        <div className="absolute bottom-[94px]  right-4 text-[14px] bg-black/80 text-white font-semibold px-2 py-1 rounded-md">
-          {formatDuration(duration)}
-        </div>
-      )}
-
-      <img
-        src={thumbnails?.medium?.url}
-        alt={title}
-        className="w-[270px] rounded-lg aspect-video object-cover "
-      />
-
-      <div className="mt-2 w-[280px] flex justify-between">
-        {!flag && (
-          <div className="w-[40px] h-[40px] rounded-full  mr-2 overflow-hidden">
-            <img
-              className="w-full h-full object-cover"
-              src={channelDetails?.snippet?.thumbnails?.default?.url}
-              alt="channel"
-            />
+    <div className="cursor-pointer w-full max-w-[360px] mx-auto md:max-w-none md:w-auto">
+      {/* Thumbnail Container */}
+      <div className="relative">
+        <img
+          src={thumbnails?.medium?.url}
+          alt={title}
+          className="w-full rounded-lg aspect-video object-cover"
+        />
+        {duration && (
+          <div className="absolute bottom-2 right-2 text-xs bg-black/80 text-white font-semibold px-1.5 py-0.5 rounded-md">
+            {formatDuration(duration)}
           </div>
         )}
-        <div className="text-[14px] w-[200px] text-left">
-          <p
-            className="text-[14px] font-medium line-clamp-2"
-            style={{
-              display: "-webkit-box",
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: "vertical",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-            }}
-          >
-            {title}
-          </p>
-          <p className="text-gray-500 text-sm mt-1">{channelTitle}</p>
-          <div className="flex items-center gap-1 text-gray-500 text-xs mt-1">
-            <span>{formatViewCount(statistics?.viewCount) || ""} views</span>
+      </div>
 
+      {/* Video Info Container */}
+      <div className="mt-2 flex gap-2 w-full">
+        {!flag && (
+          <div className="flex-shrink-0">
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden">
+              <img
+                className="w-full h-full object-cover"
+                src={channelDetails?.snippet?.thumbnails?.default?.url}
+                alt="channel"
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Text Info */}
+        <div className="flex-1 min-w-0">
+          <h3 className="text-sm md:text-[14px] font-medium line-clamp-2">
+            {title}
+          </h3>
+          <p className="text-gray-500 text-xs md:text-sm mt-0.5">
+            {channelTitle}
+          </p>
+          <div className="flex items-center gap-1 text-gray-500 text-xs mt-0.5">
+            <span>{formatViewCount(statistics?.viewCount) || ""} views</span>
             <span>•</span>
             <span>{formatTimeAgo(publishedAt)}</span>
           </div>
         </div>
-        <BsThreeDotsVertical
-          size={35}
-          color="gray"
-          className="p-2 ml-1 rounded-full"
-        />
+
+        {/* Options Button - Hidden on mobile if flag is true */}
+        {(!flag || window.innerWidth >= 768) && (
+          <button className="self-start flex-shrink-0">
+            <BsThreeDotsVertical
+              size={20}
+              color="gray"
+              className="p-1 md:p-2 rounded-full hover:bg-gray-200"
+            />
+          </button>
+        )}
       </div>
     </div>
   );

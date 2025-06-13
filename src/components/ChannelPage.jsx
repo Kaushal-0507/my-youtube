@@ -114,7 +114,7 @@ const ChannelPage = () => {
           </div>
         </div>
       )}
-      <div className="p-2 flex flex-wrap gap-x-4 gap-y-7">
+      <div className="grid max-w-[87%] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 py-4 px-4 mx-5 md:mx-0 md:px-0">
         {channelVideos.map((video) => (
           <Link key={video?.etag} to={"/watch?v=" + video.id}>
             <VideoCard info={video} flag={true} />

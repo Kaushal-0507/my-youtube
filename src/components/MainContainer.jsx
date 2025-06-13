@@ -7,7 +7,7 @@ const MainContainer = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
   return (
     <div
-      className={`p-1.5 max-w-full align-middle ${
+      className={`py-1.5 max-w-full align-middle ${
         isMenuOpen ? "md:ml-[80px]" : ""
       }`}
     >

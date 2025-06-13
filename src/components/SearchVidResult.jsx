@@ -18,7 +18,7 @@ const SearchVidResult = () => {
 
   return (
     <div
-      className={`p-2 flex flex-wrap  gap-x-4 gap-y-7 ml-4 md:ml-0 ${
+      className={`grid max-w-[93%] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 py-4 px-4 mx-3 md:mx-0 md:px-0 ${
         isDarkTheme ? "text-white" : "text-black"
       }`}
     >

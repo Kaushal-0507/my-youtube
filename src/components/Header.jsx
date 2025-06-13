@@ -100,7 +100,7 @@ const Header = () => {
 
         {suggestionFocus && suggestions.length > 0 && (
           <div
-            className={`absolute md:fixed  rounded-[10px] shadow-2xl w-[90%] h-[300px] md:h-[350px] md:w-[480px] md:left-[50%] md:translate-x-[-50%] px-2 py-2 mt-1 text-left border-gray-300 z-50 overflow-y-scroll ${
+            className={`absolute md:fixed  rounded-[10px] shadow-2xl w-[90%]  md:w-[480px] md:left-[50%] md:translate-x-[-50%] px-2 py-2 mt-1 text-left border-gray-300 z-50  ${
               isDarkTheme ? "bg-black text-white" : "bg-white text-black"
             }`}
           >
