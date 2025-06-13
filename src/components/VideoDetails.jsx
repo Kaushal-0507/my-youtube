@@ -159,16 +159,28 @@ const VideoDetails = ({ video }) => {
           </div>
           <div className="flex items-center mt-3 gap-2">
             <div className="w-[40px] h-[40px] rounded-full border-[1px] border-gray-300 overflow-hidden">
-              <img
-                className="w-full h-full object-cover"
-                src={channelDetails?.snippet?.thumbnails?.default?.url}
-                alt="channel"
-              />
+              <Link
+                key={video?.snippet?.channelId}
+                to={"/channel?c=" + video?.snippet?.channelId}
+              >
+                <img
+                  className="w-full h-full object-cover"
+                  src={channelDetails?.snippet?.thumbnails?.default?.url}
+                  alt="channel"
+                />
+              </Link>
             </div>
 
             <div className="flex-1">
               <div className="flex flex-col">
-                <p className="text-black font-bold text-base">{channelTitle}</p>
+                <Link
+                  key={video?.snippet?.channelId}
+                  to={"/channel?c=" + video?.snippet?.channelId}
+                >
+                  <p className="text-black font-bold text-base">
+                    {channelTitle}
+                  </p>
+                </Link>
                 {channelDetails?.statistics?.subscriberCount && (
                   <p className="text-gray-500 text-xs">
                     {formatViewCount(channelDetails.statistics.subscriberCount)}{" "}
@@ -177,6 +189,7 @@ const VideoDetails = ({ video }) => {
                 )}
               </div>
             </div>
+
             <button
               onClick={handleSubscribe}
               className={`px-3 py-1 text-sm font-semibold text-white rounded-full ${
