@@ -164,30 +164,37 @@ const Sidebar = () => {
                 Home
               </li>
             </Link>
-            <li
-              className={`flex items-center py-2.5 px-3  rounded-lg cursor-pointer ${
-                isDarkTheme ? "hover:bg-white/10" : "hover:bg-gray-200"
-              }`}
-            >
-              <IoIosMusicalNote size={25} className="mr-3" />
-              Shorts
-            </li>
-            <li
-              className={`flex items-center py-2.5 px-3  rounded-lg cursor-pointer ${
-                isDarkTheme ? "hover:bg-white/10" : "hover:bg-gray-200"
-              }`}
-            >
-              <MdOutlineSubscriptions size={25} className="mr-3" />
-              Subscriptions
-            </li>
-            <li
-              className={`flex items-center py-2.5 px-3  rounded-lg cursor-pointer ${
-                isDarkTheme ? "hover:bg-white/10" : "hover:bg-gray-200"
-              }`}
-            >
-              <MdAccountCircle size={25} className="mr-3" />
-              You
-            </li>
+            <Link to="/signin">
+              <li
+                className={`flex items-center py-2.5 px-3  rounded-lg cursor-pointer ${
+                  isDarkTheme ? "hover:bg-white/10" : "hover:bg-gray-200"
+                }`}
+              >
+                <IoIosMusicalNote size={25} className="mr-3" />
+                Shorts
+              </li>
+            </Link>
+            <Link to="/signin">
+              <li
+                className={`flex items-center py-2.5 px-3  rounded-lg cursor-pointer ${
+                  isDarkTheme ? "hover:bg-white/10" : "hover:bg-gray-200"
+                }`}
+              >
+                <MdOutlineSubscriptions size={25} className="mr-3" />
+                Subscriptions
+              </li>
+            </Link>
+
+            <Link to="/signin">
+              <li
+                className={`flex items-center py-2.5 px-3  rounded-lg cursor-pointer ${
+                  isDarkTheme ? "hover:bg-white/10" : "hover:bg-gray-200"
+                }`}
+              >
+                <MdAccountCircle size={25} className="mr-3" />
+                You
+              </li>
+            </Link>
             <li
               onClick={() => {
                 themeClickHandle();
@@ -199,22 +206,26 @@ const Sidebar = () => {
               <FaAffiliatetheme size={25} className="mr-3" />
               {isDarkTheme ? "Dark ✅" : "Light ✅"}
             </li>
-            <li
-              className={`flex items-center py-2.5 px-3  rounded-lg cursor-pointer ${
-                isDarkTheme ? "hover:bg-white/10" : "hover:bg-gray-200"
-              }`}
-            >
-              <IoIosSettings size={25} className="mr-3" />
-              Setting
-            </li>
-            <li
-              className={`flex items-center py-2.5 px-3  rounded-lg cursor-pointer ${
-                isDarkTheme ? "hover:bg-white/10" : "hover:bg-gray-200"
-              }`}
-            >
-              <IoAccessibility size={25} className="mr-3" />
-              Help
-            </li>
+            <Link to="/signin">
+              <li
+                className={`flex items-center py-2.5 px-3  rounded-lg cursor-pointer ${
+                  isDarkTheme ? "hover:bg-white/10" : "hover:bg-gray-200"
+                }`}
+              >
+                <IoIosSettings size={25} className="mr-3" />
+                Setting
+              </li>
+            </Link>
+            <Link to="/signin">
+              <li
+                className={`flex items-center py-2.5 px-3  rounded-lg cursor-pointer ${
+                  isDarkTheme ? "hover:bg-white/10" : "hover:bg-gray-200"
+                }`}
+              >
+                <IoAccessibility size={25} className="mr-3" />
+                Help
+              </li>
+            </Link>
           </ul>
         </div>
       ) : (
@@ -235,33 +246,39 @@ const Sidebar = () => {
                 <span className="text-[10px] mt-1">Home</span>
               </li>
             </Link>
-            <li
-              className={`flex flex-col items-center flex-1 py-1 px-1  rounded-lg cursor-pointer ${
-                isDarkTheme ? "hover:bg-white/10" : "hover:bg-gray-200"
-              }`}
-            >
-              {" "}
-              <IoIosMusicalNote size={20} />
-              <span className="text-[10px] mt-1">Shorts</span>
-            </li>
-            <li
-              className={`flex flex-col items-center flex-1 py-1 px-1  rounded-lg cursor-pointer ${
-                isDarkTheme ? "hover:bg-white/10" : "hover:bg-gray-200"
-              }`}
-            >
-              {" "}
-              <MdOutlineSubscriptions size={20} />
-              <span className="text-[10px] mt-1">Subs</span>
-            </li>
-            <li
-              className={`flex flex-col items-center flex-1 py-1 px-1  rounded-lg cursor-pointer ${
-                isDarkTheme ? "hover:bg-white/10" : "hover:bg-gray-200"
-              }`}
-            >
-              {" "}
-              <MdAccountCircle size={20} />
-              <span className="text-[10px] mt-1">You</span>
-            </li>
+            <Link to="/signin" className="flex-1">
+              <li
+                className={`flex flex-col items-center flex-1 py-1 px-1  rounded-lg cursor-pointer ${
+                  isDarkTheme ? "hover:bg-white/10" : "hover:bg-gray-200"
+                }`}
+              >
+                {" "}
+                <IoIosMusicalNote size={20} />
+                <span className="text-[10px] mt-1">Shorts</span>
+              </li>
+            </Link>
+            <Link to="/signin" className="flex-1">
+              <li
+                className={`flex flex-col items-center flex-1 py-1 px-1  rounded-lg cursor-pointer ${
+                  isDarkTheme ? "hover:bg-white/10" : "hover:bg-gray-200"
+                }`}
+              >
+                {" "}
+                <MdOutlineSubscriptions size={20} />
+                <span className="text-[10px] mt-1">Subs</span>
+              </li>
+            </Link>
+            <Link to="/signin" className="flex-1">
+              <li
+                className={`flex flex-col items-center flex-1 py-1 px-1  rounded-lg cursor-pointer ${
+                  isDarkTheme ? "hover:bg-white/10" : "hover:bg-gray-200"
+                }`}
+              >
+                {" "}
+                <MdAccountCircle size={20} />
+                <span className="text-[10px] mt-1">You</span>
+              </li>
+            </Link>
           </ul>
         </div>
       )}

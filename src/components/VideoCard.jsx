@@ -1,6 +1,7 @@
 import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import useChannelDetails from "../utils/useChannelDetails";
+import { useSelector } from "react-redux";
 
 export const formatDuration = (duration) => {
   if (!duration) return "0:00";
@@ -59,7 +60,7 @@ export const formatViewCount = (count) => {
 
 const VideoCard = ({ info, flag }) => {
   if (!info) return null;
-
+  const isDarkTheme = useSelector((store) => store.app.isDarkTheme);
   const { snippet, statistics, contentDetails } = info;
   const { channelTitle, channelId, thumbnails, title, publishedAt } = snippet;
   const channelDetails = useChannelDetails(channelId);
@@ -68,7 +69,6 @@ const VideoCard = ({ info, flag }) => {
 
   return (
     <div className="cursor-pointer w-full max-w-[360px] mx-auto md:max-w-none md:w-auto">
-      {/* Thumbnail Container */}
       <div className="relative">
         <img
           src={thumbnails?.medium?.url}
@@ -82,7 +82,6 @@ const VideoCard = ({ info, flag }) => {
         )}
       </div>
 
-      {/* Video Info Container */}
       <div className="mt-2 flex gap-2 w-full">
         {!flag && (
           <div className="flex-shrink-0">
@@ -96,9 +95,12 @@ const VideoCard = ({ info, flag }) => {
           </div>
         )}
 
-        {/* Text Info */}
         <div className="flex-1 min-w-0">
-          <h3 className="text-sm md:text-[14px] font-medium line-clamp-2">
+          <h3
+            className={`text-sm md:text-[14px] font-medium line-clamp-2 ${
+              isDarkTheme ? "text-white" : "text-black"
+            }`}
+          >
             {title}
           </h3>
           <p className="text-gray-500 text-xs md:text-sm mt-0.5">
@@ -111,7 +113,6 @@ const VideoCard = ({ info, flag }) => {
           </div>
         </div>
 
-        {/* Options Button - Hidden on mobile if flag is true */}
         {(!flag || window.innerWidth >= 768) && (
           <button className="self-start flex-shrink-0">
             <BsThreeDotsVertical

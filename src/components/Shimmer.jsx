@@ -6,7 +6,7 @@ const Shimmer = ({ flag }) => {
   return (
     <div className={`w-full ${isMenuOpen ? "md:ml-[83px]" : ""}`}>
       {flag ? (
-        <div className="flex flex-col lg:flex-row w-full px-2 md:px-4">
+        <div className="flex flex-col lg:flex-row w-full px-2 md:px-0">
           <div className="w-full lg:w-[68%] lg:pr-4">
             <div className="aspect-video w-full rounded-xl bg-gray-200 animate-pulse"></div>
             <div className="mt-4 w-full h-32 rounded-xl bg-gray-200 animate-pulse"></div>
@@ -39,7 +39,7 @@ const Shimmer = ({ flag }) => {
           </div>
         </div>
       ) : (
-        <div className="px-2 md:px-4">
+        <div className="px-2 md:px-0">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {[...Array(16)].map((_, i) => (
               <div key={i} className="w-full">

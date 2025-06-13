@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import useSearchVideos from "../utils/useSearchVideos";
 import { Link } from "react-router-dom";
-import Shimmer from "./Shimmer";
 import VideoCard from "./VideoCard";
 import { useSelector } from "react-redux";
 
@@ -31,14 +30,8 @@ const ButtonList = () => {
   const btnVideoLists = useSearchVideos(shouldFetchVideos ? activeQuery : null);
   const isDarkTheme = useSelector((store) => store.app.isDarkTheme);
 
-  // Show Shimmer only when fetching (not for "All")
-  if (shouldFetchVideos && !btnVideoLists) {
-    return <Shimmer flag={false} />;
-  }
-
   return (
     <div>
-      {/* Button Row */}
       <div
         className={`flex max-w-[93%] ml-2 md:ml-0 overflow-x-scroll [&::-webkit-scrollbar]:hidden py-2 space-x-2 ${
           isDarkTheme ? "bg-black" : "bg-white text-black"
@@ -79,9 +72,7 @@ const ButtonList = () => {
               </Link>
             ))
           ) : (
-            <div className="col-span-full text-center py-8">
-              <p>No videos found for "{activeQuery}"</p>
-            </div>
+            <div className="col-span-full text-center"></div>
           )}
         </div>
       )}

@@ -55,7 +55,7 @@ const VideoDetails = ({ video }) => {
 
   return (
     <div>
-      <div className="mt-3 max-w-[680px]">
+      <div className="mt-3 w-full">
         <h1
           className={`text-xl font-bold ${
             isDarkTheme ? "text-white" : "text-black"

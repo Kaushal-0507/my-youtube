@@ -13,7 +13,7 @@ const SearchVidResult = () => {
 
   const vidResults = useSearchVideos(searchVidUrl);
   if (!vidResults) {
-    return <Shimmer />;
+    return <Shimmer flag={false} />;
   }
 
   return (

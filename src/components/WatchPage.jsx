@@ -50,11 +50,8 @@ const WatchPage = () => {
         isMenuOpen ? "md:ml-[83px]" : ""
       }`}
     >
-      {/* Main Content Column (Video + Details + Comments) */}
-      <div className="flex flex-col lg:flex-row gap-6 w-full px-2.5 py-6">
-        {/* Left Column (Video + Details + Comments) */}
+      <div className="flex flex-col lg:flex-row gap-6 w-full px-2.5 pt-6">
         <div className="w-full lg:flex-1 overflow-hidden">
-          {/* Video Player */}
           <div className="w-full overflow-hidden">
             <div className="aspect-video w-full">
               <iframe
@@ -70,11 +67,9 @@ const WatchPage = () => {
             </div>
           </div>
 
-          {/* Video Details */}
           <VideoDetails video={currentVideo} />
 
-          {/* Comments Section */}
-          <div className="flex flex-col mt-3.5 rounded-[10px] py-3 w-full overflow-hidden">
+          <div className="flex flex-col mt-1 rounded-[10px] py-2 w-full overflow-hidden">
             <div
               className={`flex py-1.5 px-2.5 my-2 cursor-pointer rounded-lg items-center justify-between ${
                 isDarkTheme
@@ -103,7 +98,6 @@ const WatchPage = () => {
           </div>
         </div>
 
-        {/* Right Column (Live Chat + Sidebar Videos) - Desktop */}
         <div className="hidden lg:block mx-2 max-w-[380px] w-full">
           <LiveChat />
           <div className="w-full overflow-hidden flex flex-col gap-3.5 mt-4">
@@ -116,8 +110,7 @@ const WatchPage = () => {
         </div>
       </div>
 
-      {/* Mobile Bottom Section (Live Chat + Recommended Videos) */}
-      <div className="lg:hidden mt-1 w-full overflow-hidden px-2.5">
+      <div className="lg:hidden  w-full overflow-hidden px-2.5">
         <LiveChat />
 
         <div className="py-2 my-3 ml-3.5 mx-1.5 flex flex-col gap-5 ">

@@ -20,11 +20,7 @@ const ChannelPage = () => {
 
   if (!channelDetails) return null;
   if (channelVideos === null) {
-    return (
-      <div>
-        <Shimmer flag={false} />
-      </div>
-    );
+    return <div>LOADING</div>;
   }
 
   const { snippet, statistics } = channelDetails;
@@ -32,7 +28,6 @@ const ChannelPage = () => {
     snippet;
   const { subscriberCount, videoCount, viewCount } = statistics;
 
-  // Truncate description for the main view
   const truncatedDescription =
     description?.length > 100
       ? `${description.substring(0, 100)}...`
@@ -40,7 +35,6 @@ const ChannelPage = () => {
 
   return (
     <div className="py-4 flex flex-col md:ml-36 mx-4 gap-6">
-      {/* Channel Header (Responsive) */}
       <div className="flex flex-col md:flex-row gap-4 items-center md:items-start">
         <img
           src={thumbnails?.medium?.url}
@@ -76,7 +70,6 @@ const ChannelPage = () => {
         </div>
       </div>
 
-      {/* Description Modal Popup */}
       {showDescriptionModal && (
         <div className="fixed md:top-24 w-[280px] md:w-[400px] top-32 left-[20px] md:h-[400px] h-[300px] md:left-[35%] bg-white border-[2px] rounded-[10px] flex items-center overflow-y-scroll [&::-webkit-scrollbar]:hidden  justify-center z-50 p-4">
           <div className="bg-white h-full rounded-lg max-w-md w-full md:px-6 px-2 py-1">
