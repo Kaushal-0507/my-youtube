@@ -5,11 +5,9 @@ import { MdAccountCircle } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { Link } from "react-router-dom";
-import { YOUTUBE_SEARCH_API } from "../utils/Contants";
 import { cacheResults } from "../utils/searchSlice";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { GoPlus } from "react-icons/go";
-
 import { FaYoutube } from "react-icons/fa";
 
 const Header = () => {
@@ -24,8 +22,10 @@ const Header = () => {
     const timer = setTimeout(() => {
       if (searchCache[searchText]) {
         setSuggestions(searchCache[searchText]);
-      } else {
+      } else if (searchText) {
         getSearchSuggestion();
+      } else {
+        setSuggestions([]);
       }
     }, 200);
 
@@ -35,20 +35,29 @@ const Header = () => {
   }, [searchText]);
 
   const getSearchSuggestion = async () => {
-    const data = await fetch(YOUTUBE_SEARCH_API + searchText);
-    const json = await data.json();
-    setSuggestions(json[1]);
-    dispatch(
-      cacheResults({
-        [searchText]: json[1],
-      })
-    );
+    try {
+      const response = await fetch(
+        `/api/search-suggestions?q=${encodeURIComponent(searchText)}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch suggestions");
+      }
+      const data = await response.json();
+      setSuggestions(data[1]);
+      dispatch(
+        cacheResults({
+          [searchText]: data[1],
+        })
+      );
+    } catch (error) {
+      console.error("Error fetching suggestions:", error);
+      setSuggestions([]);
+    }
   };
 
   const toggleMenuClickHandle = () => {
     dispatch(toggleMenu());
   };
-
   return (
     <div
       className={`flex fixed top-0 left-0 right-0 flex-col ${

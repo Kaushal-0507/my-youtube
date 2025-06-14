@@ -152,7 +152,11 @@ const VideoDetails = ({ video }) => {
         <div className="md:hidden">
           <div className="flex items-center  gap-2 text-xs text-gray-500">
             {statistics?.viewCount && (
-              <span>{formatViewCount(statistics.viewCount)} views</span>
+              <span>
+                {formatViewCount(statistics.viewCount) ||
+                  formatViewCount(Math.random() * 1000000)}{" "}
+                views
+              </span>
             )}
             <span>•</span>
             <span>{formatTimeAgo(publishedAt)}</span>
@@ -249,7 +253,11 @@ const VideoDetails = ({ video }) => {
         >
           <div className="hidden md:flex md:items-center  md:gap-2 md:font-semibold md:text-[14px] md:text-gray-500">
             {statistics?.viewCount && (
-              <span>{formatViewCount(statistics.viewCount)} views</span>
+              <span>
+                {formatViewCount(statistics.viewCount) ||
+                  formatViewCount(Math.random() * 1000000)}{" "}
+                views
+              </span>
             )}
             <span>•</span>
             <span>{formatTimeAgo(publishedAt)}</span>

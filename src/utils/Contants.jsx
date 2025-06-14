@@ -39,17 +39,13 @@ export const fetchWithKeyRotation = async (url) => {
   throw new Error("All API keys exhausted");
 };
 
-// export const GOOGLE_API_KEY = "AIzaSyCgQf6EQo7gHH3qcTOK5I7iEGUX_zznSZk";
-
-// export const YOUTUBE_VIDEOS_API =
-//   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&key=" +
-//   GOOGLE_API_KEY;
-
-export const YOUTUBE_SEARCH_API =
-  "https://thingproxy.freeboard.io/fetch/http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
-
 export const LIVE_CHAT_COUNT = 30;
 
 // AIzaSyBkXFg7v4Bc7MCn7Pj7KUc-DFpYk1a9JEs
 // AIzaSyCgQf6EQo7gHH3qcTOK5I7iEGUX_zznSZk
 //AIzaSyBgEpDy_F5KkvBwuHUOPJM2-n9XpQR9srU
+// export const GOOGLE_API_KEY = "AIzaSyCgQf6EQo7gHH3qcTOK5I7iEGUX_zznSZk";
+
+// export const YOUTUBE_VIDEOS_API =
+//   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&key=" +
+//   GOOGLE_API_KEY;
