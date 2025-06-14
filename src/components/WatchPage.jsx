@@ -26,7 +26,7 @@ const WatchPage = () => {
 
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
   const isDarkTheme = useSelector((store) => store.app.isDarkTheme);
-  const [showComment, setShowComment] = useState(true);
+  const [showComment, setShowComment] = useState(false);
 
   const toggleComment = () => {
     setShowComment(!showComment);

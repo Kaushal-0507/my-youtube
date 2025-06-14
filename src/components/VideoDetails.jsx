@@ -177,7 +177,11 @@ const VideoDetails = ({ video }) => {
                   key={video?.snippet?.channelId}
                   to={"/channel?c=" + video?.snippet?.channelId}
                 >
-                  <p className="text-black font-bold text-base">
+                  <p
+                    className={`font-bold text-base ${
+                      isDarkTheme ? "text-white" : "text-black"
+                    }`}
+                  >
                     {channelTitle}
                   </p>
                 </Link>
@@ -200,19 +204,37 @@ const VideoDetails = ({ video }) => {
             </button>
           </div>
 
-          <div className="flex gap-2 mt-3">
+          <div className="flex gap-2 mt-3 justify-end">
             {statistics?.likeCount && (
-              <span className="flex py-2 px-3 items-center text-[12px] cursor-pointer bg-gray-200 rounded-full">
-                <BiLike size={16} color="black" className="mr-1.5" />
+              <span
+                className={`flex py-2 px-3 items-center text-[12px] cursor-pointer  rounded-full ${
+                  isDarkTheme
+                    ? "bg-white/10 text-white"
+                    : "bg-gray-200 text-black"
+                }`}
+              >
+                <BiLike size={16} className="mr-1.5" />
                 {formatViewCount(statistics.likeCount)} |{" "}
-                <BiDislike size={16} color="black" className="ml-2" />
+                <BiDislike size={16} className="ml-2" />
               </span>
             )}
-            <div className="py-2 px-3 text-[12px] items-center flex cursor-pointer bg-gray-200 text-black rounded-full">
-              <RiShareForwardLine size={16} color="black" className="mr-1.5" />
+            <div
+              className={`py-2 px-3 text-[12px] items-center flex cursor-pointer  rounded-full ${
+                isDarkTheme
+                  ? "bg-white/10 text-white"
+                  : "bg-gray-200 text-black"
+              }`}
+            >
+              <RiShareForwardLine size={16} className="mr-1.5" />
               <p className="font-semibold">Share</p>
             </div>
-            <p className="py-2 px-2.5 ml-[55px] cursor-pointer bg-gray-200 rounded-full">
+            <p
+              className={`py-2 px-2.5 cursor-pointer  rounded-full ${
+                isDarkTheme
+                  ? "bg-white/10 text-white"
+                  : "bg-gray-200 text-black"
+              }`}
+            >
               <BsThreeDots size={16} />
             </p>
           </div>

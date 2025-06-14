@@ -7,6 +7,7 @@ import useChannelVideos from "../utils/useChannelVideos";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import VideoCard from "./VideoCard";
+import { useSelector } from "react-redux";
 
 const ChannelPage = () => {
   const [searchParams] = useSearchParams();
@@ -17,6 +18,7 @@ const ChannelPage = () => {
   const channelVideos = useChannelVideos(channelUrl);
 
   const channelDetails = useChannelDetails(channelUrl);
+  const isDarkTheme = useSelector((store) => store.app.isDarkTheme);
 
   if (!channelDetails) return null;
   if (channelVideos === null) {
@@ -41,10 +43,20 @@ const ChannelPage = () => {
           alt="Channel Thumbnail"
           className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
         />
-        <div className="flex-1 text-center md:text-left">
+        <div
+          className={`flex-1 text-center md:text-left ${
+            isDarkTheme ? "bg-black text-white" : "bg-white text-black"
+          }`}
+        >
           <h1 className="text-xl md:text-2xl font-bold">{title}</h1>
           <div className="flex justify-center items-center md:justify-start gap-2 mt-1 text-sm text-gray-600">
-            <p className="font-semibold text-black text-[16px]">{customUrl}</p>
+            <p
+              className={`font-semibold  text-[16px] ${
+                isDarkTheme ? " text-white" : " text-black"
+              }`}
+            >
+              {customUrl}
+            </p>
             <p>{formatViewCount(subscriberCount)} subscribers</p>
             <p>{formatViewCount(videoCount)} videos</p>
           </div>

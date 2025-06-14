@@ -1,18 +1,24 @@
-import React from "react";
 import { useState, useEffect } from "react";
-import { GOOGLE_API_KEY, YOUTUBE_VIDEOS_API } from "../utils/Contants";
+import { fetchWithKeyRotation } from "../utils/Contants";
 
 const useVideoApi = () => {
   const [videoLists, setVideoLists] = useState([]);
 
   useEffect(() => {
+    const getVideos = async () => {
+      try {
+        const json = await fetchWithKeyRotation(
+          "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&key="
+        );
+        setVideoLists(json?.items || []);
+      } catch (error) {
+        console.error("Error fetching videos:", error);
+        setVideoLists([]);
+      }
+    };
+
     getVideos();
   }, []);
-  const getVideos = async () => {
-    const data = await fetch(YOUTUBE_VIDEOS_API);
-    const json = await data.json();
-    setVideoLists(json?.items);
-  };
 
   return videoLists;
 };
